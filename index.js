@@ -2,6 +2,8 @@ const score = document.querySelector('.score');
 const highest = document.querySelector('.highest');
 const gameScreen = document.querySelector('.gameScreen');
 
+const controls = document.querySelectorAll('.control');
+
 let clock = 100;
 let acceleration = 1.1;
 let foodX, foodY;
@@ -14,6 +16,24 @@ let intervalId;
 
 let highestScore = localStorage.getItem('highest') || 0;
 highest.innerText = `Highest Score: ${highestScore}`;
+
+controls.forEach( arrow => {
+    arrow.addEventListener("click", (e) => {
+        if(e.target.classList.contains('top') && velocityY != 1) {
+            velocityX = 0;
+            velocityY = -1;
+        } else if (e.target.classList.contains('down') && velocityY != -1) {
+            velocityX = 0;
+            velocityY = 1;
+        } else if (e.target.classList.contains('left') && velocityX != 1) {
+            velocityX = -1;
+            velocityY = 0;
+        } else if (e.target.classList.contains('right') && velocityX != -1) {
+            velocityX = 1;
+            velocityY = 0;
+        }
+    });
+});
 
 const accelerate = () => {
     clock = clock / acceleration;
