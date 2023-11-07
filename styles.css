@@ -89,3 +89,10 @@ body {
     margin-bottom: 6px;
 }
 
+.food {
+    background-color: rgb(245, 111, 205);
+}
+
+.snake {
+    background-color: rgb(111, 245, 111);
+}
