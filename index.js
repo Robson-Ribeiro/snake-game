@@ -94,11 +94,25 @@ const start = () => {
         snakeBody[i] = snakeBody[i-1];
     }
 
-    snakeBody[0] = [snakeX, snakeY];
-
-    if(snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
-        return gameOver = true;
+    if(snakeX > 0 && snakeX <= 30 && snakeY > 0 && snakeY <= 30) {
+        snakeBody[0] = [snakeX, snakeY];
+    } else if(snakeX <= 0) {
+        snakeBody[0] = [30, snakeY];
+        snakeX = 30;
+    } else if(snakeX > 30) {
+        snakeBody[0] = [0, snakeY];
+        snakeX = 0;
+    } else if(snakeY <= 0) {
+        snakeBody[0] = [snakeX, 30];
+        snakeY = 30;
+    } else {
+        snakeBody[0] = [snakeX, 0];
+        snakeY = 0;
     }
+    
+    //if(snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
+    //    return gameOver = true;
+    //}
 
     for(let i = 0; i < snakeBody.length; i++) {
         html += `<div class="snake" style="grid-area: ${snakeBody[i][1]} / ${snakeBody[i][0]}"></div>`;
